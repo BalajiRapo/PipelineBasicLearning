@@ -1,0 +1,13 @@
+<apex:page controller="FileDisplayController">
+    <apex:pageBlock title="Files">
+        <apex:pageBlockTable value="{!fileList}" var="file">
+            <apex:column headerValue="File Name">
+                {!file.Title}
+            </apex:column>
+            <apex:column headerValue="File Content">
+                <apex:image value="{!file.VersionData}" rendered="{!file.VersionData != null}" width="100" height="100"/>
+            </apex:column>
+            <!-- Add more columns based on your requirements -->
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

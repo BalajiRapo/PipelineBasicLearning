@@ -1,0 +1,7 @@
+<apex:page >
+    <apex:form >
+    Enter name:<apex:inputText id="Name"/>
+    Enter age: <apex:inputText id="age"/>
+    Currently are you staying in India:<apex:inputCheckbox id="check"/>
+        </apex:form>
+</apex:page>

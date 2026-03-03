@@ -1,0 +1,17 @@
+<template>
+    <template for:each={recstodisplay} for:item="recs">
+        <p key={recs.Id}>{recs.Name}</p>
+    </template>
+    <button onclick={handlePrevious}>Prev</button>
+    <template for:each={visiblepages} for:item="num">
+     <button 
+                key={num} 
+                data-page={num} 
+                onclick={handleRec}
+            >
+                {num}
+            </button>
+   
+    </template>
+     <button onclick={handleNext}>Next</button>
+</template>

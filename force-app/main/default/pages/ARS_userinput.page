@@ -1,0 +1,11 @@
+<apex:page controller="IPAddressController" showHeader="false" action="{!getUserIPAddress}">
+ <script>
+    setTimeout(function(){
+        var message = '{!ip}';
+        parent.postMessage(message, window.top.location.origin);         
+     }, 3000);
+ </script>
+ <apex:form >
+     {!ip}
+ </apex:form>
+</apex:page>

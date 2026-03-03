@@ -1,0 +1,12 @@
+<!-- Page B -->
+<apex:page >
+    <a href="/apex/page1navigation#program" onclick="sendMessage();">Go to Page A and open Program section</a>
+
+    <script>
+        function sendMessage() {
+            // Post a message to the parent window
+           alert('enters');
+            window.parent.postMessage('showProgramSection', '*');
+        }
+    </script>
+</apex:page>

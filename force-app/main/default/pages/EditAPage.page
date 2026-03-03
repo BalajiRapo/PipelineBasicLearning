@@ -1,0 +1,16 @@
+<apex:page standardController="Student__c">
+<apex:sectionHeader title="Account Detail"/>
+<apex:form >
+ <apex:pageBlock >
+   <apex:pageBlockButtons >
+      <apex:commandButton action="{!edit}" value="Edit"/>           
+      <apex:commandButton action="{!delete}" value="Delete"/>
+      <apex:commandButton action="{!cancel}" value="Cancel"/>
+   </apex:pageBlockButtons>
+   <apex:pageBlockSection columns="2" title="Account Information">
+      <apex:outputField value="{!Student__c.Name}" />
+      <apex:outputField value="{!Student__c.GuardianEmail__c}"/>
+  </apex:pageBlockSection>
+ </apex:pageBlock>
+</apex:form> 
+</apex:page>

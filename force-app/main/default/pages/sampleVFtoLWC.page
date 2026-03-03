@@ -1,0 +1,15 @@
+<apex:page >
+    <input id="message" type="text"/>
+    <button onclick="sendToLWC()">Send To LWC </button>
+    <Script>
+        var lexOrigin="https://conexus-4a-dev-ed.lightning.force.com/one/one.app#eyJjb21wb25lbnREZWYiOiJvbmU6YWxvaGFQYWdlIiwiYXR0cmlidXRlcyI6eyJhZGRyZXNzIjoiaHR0cHM6Ly9jb25leHVzLTRhLWRldi1lZC0tYy52Zi5mb3JjZS5jb20vYXBleC9nZXRDb3VudFZGUGFnZT9pZD0wMDE1aTAwMDAwWnFoTnZBQUoifSwic3RhdGUiOnsid3MiOiIvbGlnaHRuaW5nL3IvQWNjb3VudC8wMDE1aTAwMDAwWnFoTnZBQUovdmlldyJ9fQ%3D%3D";
+        function sendTOLWC(){
+           var payload = document.getElementById("message").value;
+           var message = { name:"SampleVFToLWCMessage",
+                           payload:payload
+                          };
+              parent.postMessage(message,lexOrigin);
+        }
+        
+    </Script>
+</apex:page>

@@ -1,0 +1,10 @@
+<apex:page Controller="CustomizedDeleteButton" >
+  <apex:pageBlock >
+   <apex:form > 
+      <apex:pageBlockSection >
+           <apex:messages />
+             <apex:commandButton action="{!DeleteTheRecord}" value="Delete"/>
+      </apex:pageBlockSection>
+      </apex:form>
+  </apex:pageBlock>
+</apex:page>

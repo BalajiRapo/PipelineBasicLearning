@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Account Datatable Example">
+        <!-- Pass columns & data to child -->
+        <c-child-datatable
+            columns={columns}
+            data={accounts}
+            onsave={handleSave}
+            onrowaction={handleRowAction}>
+        </c-child-datatable>
+
+        <!-- Pagination -->
+        <div class="slds-m-top_small slds-align_absolute-center">
+            <lightning-button label="Previous" onclick={handlePrevious} class="slds-m-right_small"></lightning-button>
+            <lightning-button label="Next" onclick={handleNext}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

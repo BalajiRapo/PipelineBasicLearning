@@ -1,0 +1,16 @@
+<apex:page standardController="Student__c" >
+  <apex:form >
+  <apex:pageBlock >
+      <apex:pageblocksection columns="2" >
+        
+           <apex:inputField value="{!Student__c.Name}"/>    
+            <apex:inputField value="{!Student__c.GuardianEmail__c}" required="true"/> 
+             <apex:inputField value="{!Student__c.Description__c}"/> 
+      </apex:pageblocksection>
+      <apex:pageBlockButtons >  <!--This will make the button visible both top and bottom ..And if you want button to visible only in bottom use location=bottom -->
+           <apex:commandButton action="{!Save}" value="Save the Record"/>
+ 
+      </apex:pageBlockButtons>
+    </apex:pageBlock>
+    </apex:form> 
+</apex:page>

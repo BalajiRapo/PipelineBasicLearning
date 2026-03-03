@@ -1,0 +1,15 @@
+<template>
+    <!-- Show loader only when isSaving = true -->
+    <template if:true={isSaving}>
+        <div class="overlay">
+            <!-- custom spinner-->
+            <div class="loader"></div>
+            <!-- standard spinner-->
+            <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+        </div>
+        
+    </template>
+
+    <lightning-input label="Account Name" value={accName} onchange={handleChange}></lightning-input>
+    <lightning-button label="Save" onclick={saveAccount}></lightning-button>
+</template>

@@ -1,0 +1,8 @@
+<apex:page controller="LWCFirst">
+    <apex:pageBlock >
+       <apex:form >
+         <apex:inputText id="searchText" value="{!mysearchtext}"/>
+         <apex:commandButton action="{!docount}" value="Search"/>
+       </apex:form> 
+    </apex:pageBlock>
+</apex:page>

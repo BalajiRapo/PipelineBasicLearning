@@ -1,0 +1,19 @@
+<apex:page standardController="Account" renderAs="pdf" applyBodyTag="false" >
+    
+        <apex:includeLightning />
+    
+        <div id="lwccontainer"/>
+    
+        <script>
+            $Lightning.use("c:getCounts", function() {
+              $Lightning.createComponent("c:getCount",
+                  {},
+                  "lwccontainer",
+                  function(cmp) {
+                    console.log("button was created");
+                    // do some stuff
+                  }
+              );
+            });
+        </script>
+    </apex:page>

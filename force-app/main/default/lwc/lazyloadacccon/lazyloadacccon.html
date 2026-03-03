@@ -1,0 +1,18 @@
+<template>
+    <lightning-accordion allow-multiple-sections-open>
+        <template for:each={accounts} for:item="acc">
+                    <lightning-accordion-section 
+                        key={acc.Id} 
+                        name={acc.Id} 
+                        label={acc.Name}>
+                        <template if:true={acc.Contacts}>
+                            <template for:each={acc.Contacts} for:item="con">
+                                 <lightning-layout-item key={con.Id} size="12" class="slds-p-around_small">
+                                        <p>{con.Name}</p>
+                                    </lightning-layout-item>
+                            </template>
+                        </template>
+                    </lightning-accordion-section>
+            </template>
+    </lightning-accordion>
+</template>

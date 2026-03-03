@@ -1,0 +1,19 @@
+<apex:page controller="productTOpportunities">
+    <apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!ListProduct}" var="a" >
+            <apex:column headerValue="Name" >
+                <apex:inputField value="{!a.name}"/>
+            </apex:column>
+            <apex:column headerValue="Opportunity">
+                <apex:inputField value="{!a.Opportunity__c}"/>
+            </apex:column>
+            
+        </apex:pageBlockTable> 
+        <apex:pageBlockButtons location="bottom">
+            <apex:commandButton value="Add Accounts Row" action="{!addAccount}"/>
+            <apex:commandButton value="Save Accounts" action="{!saveAccount}" rerender="aa"/> 
+        </apex:pageBlockButtons>
+     </apex:pageBlock>
+       </apex:form>
+</apex:page>

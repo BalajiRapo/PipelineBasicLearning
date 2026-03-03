@@ -1,0 +1,7 @@
+<apex:page standardController="account"> 
+	<apex:pageBlock title="Account List"> 
+		
+				<apex:outputText value="{!account.Name}"/> 
+			
+	</apex:pageBlock> 
+</apex:page>

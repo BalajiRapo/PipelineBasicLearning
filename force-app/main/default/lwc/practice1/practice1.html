@@ -1,0 +1,13 @@
+<template>
+    <lightning-input label="Enter Account Id"  onchange={change}>
+   
+    </lightning-input>
+    <template for:each={accounts} for:item="acc">
+        <lightning-layout key={acc.Id} class="slds-var-m-vertical_x-small">
+            <lightning-layout-item flexibility="grow">
+                {acc.Name}
+            </lightning-layout-item>
+            
+        </lightning-layout>
+    </template>
+</template>

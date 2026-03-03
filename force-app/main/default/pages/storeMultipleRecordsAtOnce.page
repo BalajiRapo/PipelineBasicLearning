@@ -1,0 +1,104 @@
+<apex:page controller="StoreMultipleRecordsAtOnce">
+    <apex:form >
+    <apex:pageBlock >
+        <apex:pageblocksection title="Account Info">
+        <apex:pageBlockTable value="{!ListAccount}" var="a" >
+            <apex:column headerValue="Name" >
+                <apex:inputField value="{!a.name}" required="false"/>
+            </apex:column>
+            <apex:column headerValue="Account Number">
+                <apex:inputField value="{!a.AccountNumber}"/>
+            </apex:column>
+            <apex:column headerValue="Type">
+                <apex:inputField value="{!a.Type}"/>
+            </apex:column>
+            <apex:column headerValue="Industry">
+                <apex:inputField value="{!a.Industry}"/>
+            </apex:column>
+            
+        </apex:pageBlockTable> 
+            </apex:pageblocksection>
+        <apex:pageBlockButtons location="bottom">
+            <apex:commandButton value="Add Accounts Row" action="{!addAccount}"/>
+            <apex:commandButton value="Save Accounts" action="{!saveAccount}" /> 
+        </apex:pageBlockButtons>
+        
+     </apex:pageBlock>
+     <apex:pageblock > 
+         <apex:pageblocksection title="Contact Info">
+        <apex:pageBlockTable value="{!ListContact}" var="b" >
+            <apex:column headerValue="Name">
+                <apex:inputField value="{!b.LastName}" required="false"/>
+            </apex:column>
+            <apex:column headerValue="Email">
+                <apex:inputField value="{!b.Email}"/>
+            </apex:column>
+             <apex:column headerValue="Description">
+                <apex:inputField value="{!b.Description}"/>
+            </apex:column>
+            <apex:column headerValue="Account">
+                <apex:inputField value="{!b.AccountId}"/>
+            </apex:column>
+             
+        </apex:pageBlockTable>
+         </apex:pageblocksection>
+        <apex:pageBlockButtons location="bottom">
+            <apex:commandButton value="Add Contacts Row" action="{!addContact}"/>
+            <apex:commandButton value="Save Accounts" action="{!saveContact}"/>
+        </apex:pageBlockButtons>
+     </apex:pageblock>
+     <apex:pageBlock >
+         <apex:pageblocksection title="Opportunity Info">
+        <apex:pageBlockTable value="{!ListOpportunity}" var="c" >
+            <apex:column headerValue="Name">
+                <apex:inputField value="{!c.name}" required="false"/> 
+            </apex:column>
+            <apex:column headerValue="Amount">
+                <apex:inputField value="{!c.Amount}"/>
+            </apex:column>
+             <apex:column headerValue="Account">
+                <apex:inputField value="{!c.AccountId}"/>
+            </apex:column>
+            <apex:column headerValue="stage name">
+                <apex:inputField value="{!c.stageName}"/>
+            </apex:column>
+            <apex:column headerValue="close Date">
+                <apex:inputField value="{!c.closedate}"/>
+            </apex:column>
+            <!--
+            <apex:column headerValue="Product">
+              <apex:selectList size="1"  label="Opportunity product" value="{!dropdownValue}">
+                   <apex:selectOptions value="{!dynamiclist}"></apex:selectOptions>
+               </apex:selectList>
+            </apex:column>
+            -->
+           
+         </apex:pageBlockTable>
+         </apex:pageblocksection>
+         <apex:pageBlockButtons location="bottom">
+            <apex:commandButton value="Add Opportunity Row" action="{!addOpportunity}"/>
+            <apex:commandButton value="Save Opportunity" action="{!saveOpportunity}"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+        
+        
+         <apex:pageBlock >
+             <apex:pageblocksection title="product Info">
+        <apex:pageBlockTable value="{!ListProduct}" var="a" >
+            <apex:column headerValue="Name" >
+                <apex:inputField value="{!a.name}"/>
+            </apex:column>
+            <apex:column headerValue="Opportunity">
+                <apex:inputField value="{!a.Opportunity__c}"/>
+            </apex:column>
+            
+        </apex:pageBlockTable> 
+                 </apex:pageblocksection>
+        <apex:pageBlockButtons location="bottom">
+            <apex:commandButton value="Add Accounts Row" action="{!addOpp}"/>
+            <apex:commandButton value="Save Accounts" action="{!saveOpp}"/> 
+        </apex:pageBlockButtons>
+             
+     </apex:pageBlock>
+    </apex:form>
+</apex:page>

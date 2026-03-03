@@ -1,0 +1,28 @@
+<apex:page id="pageA">
+    <div id="program" style="display: none;">
+        <!-- Content of the "program" section -->
+        This is the Program section.
+    </div>
+
+    <script>
+        // Add an event listener to listen for messages
+        window.addEventListener('message', function(event) {
+            // Check the origin of the sender
+            if (event.origin !== window.location.origin) {
+                return;
+            }  
+
+            // Check the message received
+            if (event.data === 'showProgramSection') {
+                // Execute the JavaScript function to show the program section
+                showProgramSection();
+            }
+        });
+
+        // JavaScript function to show the program section
+        function showProgramSection() {
+            alert('working');
+            document.getElementById('program').style.display = 'block';
+        }
+    </script>
+</apex:page>

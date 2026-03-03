@@ -1,0 +1,39 @@
+<apex:page controller="CustomControllerForSave">
+    <apex:form >
+     
+       <apex:commandButton value="Add Section" reRender="sectionsPanel" action="{!addSection}" />
+         <apex:outputPanel id="sectionsPanel">
+            <apex:repeat value="{!lstSections}" var="section">
+                
+      <apex:pageBlock >
+         <apex:pageblocksection title="Account Info">
+             <apex:inputText value="{!accName}" label="Account Name"/>
+              <apex:inputText value="{!NoOfEmp}" label="Number of employees"/>
+             <apex:inputText value="{!Description}" label="Description"/>
+             <apex:inputText value="{!Industry}" label="Industry"/> 
+
+          </apex:pageblocksection>
+           <apex:pageblocksection title="Contact Info" >
+             <apex:inputText value="{!conName}" label="Contact Name"/>
+              <apex:inputText value="{!conEmail}" label="Contact email"/>
+              <apex:inputText value="{!Description}" label="Description"/>
+          </apex:pageblocksection>
+           <apex:pageblocksection title="Opportunity Info" >
+             <apex:inputText value="{!oppName}" label="Opportunity name"/>
+              <apex:inputText value="{!oppAmount}" label="Opportunity amount"/>
+              <apex:selectList size="1"  label="Opportunity product" value="{!dropdownValue}">
+                   <apex:selectOptions value="{!dynamiclist}"></apex:selectOptions>
+              </apex:selectList>
+          </apex:pageblocksection>
+          
+
+          <apex:pageBlockSection >
+             <apex:commandButton action="{!saveRecord}" value="SaveAllThree"/>
+          </apex:pageBlockSection>
+          
+      </apex:pageBlock>
+                
+       </apex:repeat>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

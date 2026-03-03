@@ -1,0 +1,12 @@
+<apex:page >
+    <apex:form >
+  <apex:pageBlock >
+      <apex:pageblocksection >
+          <apex:selectList id="dropdown" size="1">  //Here size is 1 , so that it will display one value in one row in dropdown
+              <apex:selectOption itemValue="1" itemLabel="India"/> 
+              <apex:selectOption itemValue="2" itemLabel="Australia"/>
+          </apex:selectList>  
+      </apex:pageblocksection>
+  </apex:pageBlock>
+    </apex:form>
+</apex:page>

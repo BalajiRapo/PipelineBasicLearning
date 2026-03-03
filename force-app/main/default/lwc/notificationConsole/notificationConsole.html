@@ -1,0 +1,17 @@
+<template>
+    <div class="slds-m-around_medium">
+      <h1 class="slds-text-heading_large">Notification Console</h1>
+      <template if:true={notifications}>
+        <ul class="slds-list_vertical slds-has-block-links">
+          <template for:each={notifications} for:item="notification">
+            <li key={notification.id} class="slds-item">
+              <span>{notification.time}</span> - <b>{notification.message}</b>
+            </li>
+          </template>
+        </ul>
+      </template>
+      <template if:false={notifications}>
+        <p>No notifications yet.</p>
+      </template>
+    </div>
+  </template>

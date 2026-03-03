@@ -1,0 +1,57 @@
+<apex:page controller="GoogleReCAPTCHAController" sidebar="false" showHeader="false" cache="false" id="pg">
+    <apex:stylesheet value="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <apex:stylesheet value="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" />
+    
+    <apex:form id="fm" styleClass="login-form">
+        <div class="container">
+            <h2>Registration form</h2>
+           
+            <div class="form-group">
+                <label for="fnField">First Name</label>
+                <apex:inputText value="{!firstName}" id="fnField" styleClass="form-control input-sm" />
+            </div>
+            <div class="form-group">
+                <label for="lnField">Last Name</label>
+                <apex:inputText value="{!lastName}" id="lnField" styleClass="form-control input-sm" />
+            </div>
+            <div class="form-group">
+                <label for="emailField">Email</label>
+                <apex:inputText value="{!email}" id="emailField" styleClass="form-control input-sm" />
+            </div>
+            <div class="form-group">
+                <div data-type="image" class="g-recaptcha" data-sitekey="{!publicKey}" data-callback="recaptchaCallback"></div>
+            </div>
+            <apex:commandButton action="{!submit}" styleClass="btn btn-primary" value="Register" id="btnVerify" />
+        </div>
+    </apex:form>
+
+    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+    <script type='text/javascript'>
+        function recaptchaCallback() {
+            var btnVerify = document.getElementById("pg:fm:btnVerify");
+            if (btnVerify.classList.contains("hideButton")) {
+                btnVerify.classList.remove("hideButton");
+            }
+        }
+    </script>
+    <style type="text/css">
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            margin-top: 100px;
+        }
+
+        .form-control.input-sm {
+            width: 20%;
+            max-width: 250px;
+        }
+
+        .g-recaptcha {
+            margin-bottom: 20px;
+        }
+    </style>
+</apex:page>

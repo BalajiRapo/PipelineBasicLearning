@@ -1,0 +1,13 @@
+table{
+    border-collapse: collapse;
+    width: 50%;  
+    
+}
+tr,td{
+border: 2px solid rgb(143, 141, 141); 
+padding: 3px;
+}
+.slds-hint-parent{
+    border: 2px solid rgb(143, 141, 141); 
+padding: 3px; 
+}

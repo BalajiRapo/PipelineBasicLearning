@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Related Contacts">
+        <lightning-datatable
+            key-field="Id"
+            data={data}
+            columns={columns}
+            enable-infinite-loading
+            onloadmore={handleLoadMore}>
+        </lightning-datatable>
+
+        <template if:true={allLoaded}>
+            <p class="slds-p-around_small slds-text-color_success">
+                ✅ All records loaded
+            </p>
+        </template>
+    </lightning-card>
+</template>

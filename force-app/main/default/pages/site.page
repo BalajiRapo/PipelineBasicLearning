@@ -1,0 +1,357 @@
+<apex:page controller="MultiPageFormController" showHeader="false" standardStylesheets="false">
+    <html>
+            <style>
+        .inputRow {
+        margin-bottom: 15px;
+        overflow: hidden; /* Clear float */
+    }
+
+    .inputPair {
+        float: left;
+        width: 48%; /* Adjust as needed */
+        margin-right: 2%; /* Adjust as needed */
+        box-sizing: border-box;
+    }
+                .inputPair1 {
+        float: left;
+        width: 33%; /* Adjust as needed */
+        margin-right: 2%; /* Adjust as needed */
+        box-sizing: border-box;
+    }
+
+    .inputPair label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .inputPair input {
+        width: 100%;
+        padding: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+        body {
+            background-color: #f4f4f4;
+        }
+
+        /* Style for the entire form */
+        .multiPageForm {
+            width: 25%;
+            margin: 20px auto;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+         padding-left: 10px;
+         height:630px;
+           
+        }
+
+        /* Style for each page block */
+        .pageBlock {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style for input fields */
+        .inputField {
+            width: 60%;
+            padding: 4px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Style for labels */
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+             font-size: 10px;
+        }
+
+        /* Style for buttons */
+        .button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive layout adjustments */
+        @media (max-width: 150px) {
+            .multiPageForm {
+                width: 90%;
+            }
+        }
+         .mandatory{
+         color: red;
+         }
+             .active {
+                display: block;
+            }
+
+            .hidden {
+                display: none; /* Hide the inactive sections */
+            }
+    </style>
+
+    <apex:form id="multiPageForm" styleClass="multiPageForm">
+        
+        <!-- Page 1: Personal Information -->
+        <apex:pageBlock id="page1" rendered="{! CurrentPage == 'page1'}" >
+            <h2>
+                 Personal Information 
+            </h2>
+            <div id="error"  style ="color:red;" class ="hidden">
+                <label>
+                    Please fill all the required fields (*)
+                </label>
+                
+            </div>
+             <div id="PhoneError"  style ="color:red;" class ="hidden">
+                <label>
+                   Please enter a valid phone number in the format 908-443-1234
+                </label>
+                
+            </div>
+            <div id="emailError"  style ="color:red;" class ="hidden">
+                <label>
+                   Please enter valid email address
+                </label>
+                
+            </div>
+            <label>First Name<span style="color: red;">*</span></label>
+            <apex:inputText id="firstName" value="{!firstName}" styleClass="inputField"/>
+            <br/>
+            <label>Last Name<span style="color: red;">*</span></label>
+            <apex:inputText id="lastName" value="{!lastName}" styleClass="inputField"/>
+            <br/>
+            <label>Gender</label>
+            <apex:selectList styleClass="inputField" value="{!selectedCountry1}" multiselect="false" size="1">
+                <apex:selectOption itemValue="Male" itemLabel="Male"/>
+                <apex:selectOption itemValue="Female" itemLabel="Female"/>
+                <apex:selectOption itemValue="Others" itemLabel="Others"/>
+            </apex:selectList>
+            <label>Email<span style="color: red;">*</span></label>
+            <apex:inputText id="email" value="{!email}"  styleClass="inputField"/>
+            <br/>
+            <label>Phone<span style="color: red;">*</span></label>
+            <apex:inputText id="phone" value="{!phone}" styleClass="inputField"/>
+            <br/>
+             <label>Program<span style="color: red;">*</span></label>
+            <apex:inputText styleClass="inputField" disabled="true"/>
+            <br/>
+            <label>Fax</label>
+            <apex:inputText styleClass="inputField"/>
+            <br/>
+            <label>Alternative Number</label>
+            <apex:inputText id="an" styleClass="inputField"/>
+            <br/>         
+            <apex:commandButton value="Next" styleClass="button" action="{!nextPage}" onclick=" return validateForm();"  />
+
+       <Script>
+           function validateForm(){
+           var fn = document.getElementById('{!$Component.firstName}').value;
+           var ln = document.getElementById('{!$Component.lastName}').value;
+           var em = document.getElementById('{!$Component.email}').value;
+           var ph = document.getElementById('{!$Component.phone}').value;
+           alert(fn+" " +ln+" " + em );
+           var display =true;
+           
+           
+          
+         if (fn.trim() === "" || ln.trim() === "" || em.trim() === "" || ph.trim() === "") {
+           alert('enterin if');
+           toggleSection('error');
+           function toggleSection(error) {
+           var sections = ['error'];
+           for (var i = 0; i < sections.length; i++) {
+           var currentSection = document.getElementById(sections[i]);
+           if (sections[i] === error) {
+                currentSection.classList.remove('hidden');
+                currentSection.classList.add('active');
+                display=false;
+            
+            }
+    
+           }
+           
+           }
+           }
+         else if (fn.trim() !== "" && ln.trim() !== "" && em.trim() !== "" && ph.trim() !== "") {
+           var phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+           if (!phoneRegex.test(ph)) {
+            display =false;
+            var num = document.getElementById('PhoneError');
+            num.style.display = "block";
+            }   
+           else {
+           var num = document.getElementById('PhoneError');
+           num.style.display = "none";
+            }
+           
+           var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(em)) {
+            display =false;
+            var num1 = document.getElementById('emailError');
+             num1.style.display = "block";
+            }
+           else {
+        var num1 = document.getElementById('emailError');
+        num1.style.display = "none";
+    }
+          
+           }         
+          return display;          
+           }
+        </Script>
+                
+        </apex:pageBlock>
+
+       <!-- Page 2: Addresses -->
+            <br/>
+
+<apex:pageBlock id="page2" rendered="{!currentPage == 'page2'}">
+    <!-- Billing Address Section -->
+    <h3>Billing Address</h3>
+    <div class="inputRow">
+        <div class="inputPair">
+            <label>Billing Street</label>
+            <apex:inputText styleClass="inputField"/>
+        </div>
+        <div class="inputPair">
+            <label>Billing City</label>
+            <apex:inputText styleClass="inputField"/>
+        </div>
+    </div>
+    <div class="inputRow">
+        <div class="inputPair">
+            <label>Postal Code</label>
+            <apex:inputText styleClass="inputField"/>
+        </div>
+        <div class="inputPair">
+            <label>State</label>
+            <apex:inputText styleClass="inputField"/>
+        </div>
+    </div>
+    <div class="inputRow">
+        <div class="inputPair">
+            <label>Country</label>
+            <apex:inputText styleClass="inputField"/>
+        </div>
+    </div>
+    <!-- Shipping Address Section -->
+        <h3>Shipping Address</h3>
+        <div class="inputRow">
+            <div class="inputPair">
+                <label>Shipping Street</label>
+                <apex:inputText styleClass="inputField"/>
+            </div>
+            <div class="inputPair">
+                <label>Shipping City</label>
+                <apex:inputText styleClass="inputField"/>
+            </div>
+        </div>
+        <div class="inputRow">
+            <div class="inputPair">
+                <label>Postal Code</label>
+                <apex:inputText styleClass="inputField"/>
+            </div>
+            <div class="inputPair">
+                <label>State</label>
+                <apex:inputText styleClass="inputField"/>
+            </div>
+        </div>
+        <label>Country</label>
+        <apex:inputText styleClass="inputField"/>
+    <div>
+        <br/>
+            <apex:commandButton action="{!previousPage}" value="Previous" styleClass="button"/>
+         <span style="margin-right: 10px;"></span> 
+            <apex:commandButton action="{!nextPage3}" value="Next" styleClass="button"/>
+    </div>
+    </apex:pageBlock>
+<apex:pageBlock id="page3" rendered="{!currentPage == 'page3'}">
+     <h2>
+                Health Information
+            </h2>
+     <div class="inputRow">
+        <div class="inputPair">
+            <label>Do you Smoke?</label>
+        </div>
+         <div class="inputPair1">
+        <apex:inputCheckbox styleClass="inputField"/>
+        </div>
+    </div>
+     <label>How many ciggerates do u somke per day</label>
+        <apex:inputText styleClass="inputField"/>
+    <div>
+        <label style="padding:5px;"></label>
+    </div>
+    <div class="inputRow">
+        <div class="inputPair">
+            <label>Do you consume Alcohol?</label>
+        </div>
+         <div class="inputPair1">
+        <apex:inputCheckbox styleClass="inputField"/>
+        
+        </div>
+    </div>
+   <label>How often do you use Alcohol </label>
+       <apex:inputText styleClass="inputField"/>
+    <div>
+        <label style="padding:5px;"></label>
+    </div>
+    <div class="inputRow">
+        <div class="inputPair">
+            <label>Do you have abnormal blood pressure?</label>
+        </div>
+         <div class="inputPair1">
+        <apex:inputCheckbox styleClass="inputField"/>
+        
+        </div>
+    </div>
+    <label>Since when you are suffering with Abnormal BP</label>
+     <apex:inputText styleClass="inputField"/>
+    <div>
+        <label style="padding:5px;"></label>
+    </div>
+    <div class="inputRow">
+        <div class="inputPair">
+            <label>Are you Diabetic?</label>
+        </div>
+         <div class="inputPair1">
+        <apex:inputCheckbox styleClass="inputField"/>
+        
+        </div>
+    </div>
+    
+    <label>Since when you are having Diabetes</label>
+      <apex:inputText styleClass="inputField"/>
+    <div>
+            <apex:commandButton action="{!previousPage3}" value="Previous" styleClass="button"/>
+         <span style="margin-right: 10px;"></span> 
+            <apex:commandButton action="{!submitForm}" value="Submit" styleClass="button"/>
+    </div>
+    
+</apex:pageBlock>
+
+    </apex:form> 
+    </html>
+</apex:page>
