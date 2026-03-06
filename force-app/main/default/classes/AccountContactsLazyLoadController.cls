@@ -2,7 +2,7 @@ public with sharing class AccountContactsLazyLoadController {
     @AuraEnabled(cacheable=true)
     public static List<Account> getContacts(String lastId, Integer batchSize) {
         if(batchSize == null) batchSize = 5;
-
+//test
         if(String.isBlank(lastId)) {
             return [
                 SELECT Id, Name, Phone
