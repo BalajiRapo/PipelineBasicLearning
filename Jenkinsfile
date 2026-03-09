@@ -15,13 +15,19 @@ pipeline {
 
         stage('Install Salesforce CLI') {
             steps {
-                sh 'npm install sfdx-cli --global'
+                sh 'npm install @salesforce/cli --global'
+            }
+        }
+
+        stage('Verify CLI') {
+            steps {
+                sh 'sf --version'
             }
         }
 
         stage('Deploy to UAT') {
             steps {
-                sh 'sfdx --version'
+                sh 'echo "Deploying to UAT Org..."'
             }
         }
     }
