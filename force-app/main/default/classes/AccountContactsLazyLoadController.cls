@@ -4,6 +4,7 @@ public with sharing class AccountContactsLazyLoadController {
         if(batchSize == null) batchSize = 5;
 //test
 //Changes made
+//Second version of changes
         if(String.isBlank(lastId)) {
             return [
                 SELECT Id, Name, Phone
