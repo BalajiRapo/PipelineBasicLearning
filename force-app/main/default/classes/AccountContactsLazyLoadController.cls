@@ -3,6 +3,7 @@ public with sharing class AccountContactsLazyLoadController {
     public static List<Account> getContacts(String lastId, Integer batchSize) {
         if(batchSize == null) batchSize = 5;
 //test
+//Changes made
         if(String.isBlank(lastId)) {
             return [
                 SELECT Id, Name, Phone
