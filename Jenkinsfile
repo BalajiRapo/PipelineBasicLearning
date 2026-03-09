@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs "NodeJS18"
+    }
+
     stages {
 
         stage('Checkout Code') {
@@ -9,7 +13,7 @@ pipeline {
             }
         }
 
-        stage('Install CLI') {
+        stage('Install Salesforce CLI') {
             steps {
                 sh 'npm install sfdx-cli --global'
             }
@@ -17,7 +21,7 @@ pipeline {
 
         stage('Deploy to UAT') {
             steps {
-                sh 'sfdx force:source:deploy -p force-app -u UAT'
+                sh 'sfdx --version'
             }
         }
     }
