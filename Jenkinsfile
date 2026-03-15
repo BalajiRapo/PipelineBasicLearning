@@ -6,28 +6,10 @@ pipeline {
     }
 
     stages {
-
-        stage('Checkout Code') {
+        stage('Check Node') {
             steps {
-                checkout scm
-            }
-        }
-
-        stage('Install Salesforce CLI') {
-            steps {
-                sh 'npm install @salesforce/cli --global'
-            }
-        }
-
-        stage('Verify CLI') {
-            steps {
-                sh 'sf --version'
-            }
-        }
-
-        stage('Deploy to UAT') {
-            steps {
-                sh 'echo "Deploying to UAT Org..."'
+                sh 'node -v'
+                sh 'npm -v'
             }
         }
     }
