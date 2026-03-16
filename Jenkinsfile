@@ -6,10 +6,22 @@ pipeline {
     }
 
     stages {
-        stage('Check Node') {
+
+        stage('Checkout') {
             steps {
-                sh 'node -v'
-                sh 'npm -v'
+                git 'https://github.com/BalajiRapo/PipelineBasicLearning.git'
+            }
+        }
+
+        stage('Install CLI') {
+            steps {
+                sh 'npm install sfdx-cli --global'
+            }
+        }
+
+        stage('Deploy to UAT') {
+            steps {
+                sh 'sfdx force:source:deploy -p force-app -u UAT'
             }
         }
     }
